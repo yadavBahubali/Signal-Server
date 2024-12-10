@@ -23,7 +23,7 @@ const app = express();
 app.use(cors({
   origin: '*', // Allow any domain
   methods: ['GET', 'POST'], // Restrict allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
+  
 }));
 
 // Middleware for parsing JSON requests
