@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "start":"nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
-  {
   "engines": {
-     "node": "latest",  // This will use the latest stable version of Node.js
-    "npm": "latest"     // Replace with your desired npm version
+    "node": "latest",  // This will use the latest stable version of Node.js
+    "npm": "latest"    // This will use the latest stable version of npm
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
