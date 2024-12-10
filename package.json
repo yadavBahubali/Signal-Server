@@ -7,8 +7,8 @@
     "start": "nodemon server.js"
   },
   "engines": {
-    "node": "latest",  // This will use the latest stable version of Node.js
-    "npm": "latest"    // This will use the latest stable version of npm
+    "node": "latest",  
+    "npm": "latest"    
   },
   "keywords": [],
   "author": "",
