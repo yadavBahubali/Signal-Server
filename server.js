@@ -45,29 +45,7 @@ app.post('/api/auth/login', (req, res) => {
   res.json({ token });
 });
 
-// Middleware for user authentication
-const authenticate = (req, res, next) => {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(401).send('Access denied. No token provided.');
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Add user data to request object
-    next();
-  } catch (err) {
-    res.status(400).send('Invalid token.');
-  }
-};
-
-// Middleware for role-based authorization
-const authorize = (roles = []) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).send('Access forbidden.');
-    }
-    next();
-  };
-};
+ 
 
 // Import routes
 const imageRoutes = require('./routes/imageRoutes');
@@ -76,16 +54,12 @@ const textRoutes = require('./routes/textRoutes');
 const shapeRoutes = require('./routes/shapeRoutes');
 
 // Use routes with middleware
-app.use('/api/images', authenticate, imageRoutes);
-app.use('/api/videos', authenticate, videoRoutes);
-app.use('/api/text', authenticate, textRoutes);
-app.use('/api/shapes', authenticate, shapeRoutes);
+app.use('/api/images',imageRoutes);
+app.use('/api/videos',videoRoutes);
+app.use('/api/text',textRoutes);
+app.use('/api/shapes',shapeRoutes);
 
-// Error-handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
+
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
   next(); // Pass control to the next middleware
